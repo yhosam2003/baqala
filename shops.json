@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "al-noor",
+    "en": "Al Noor Baqala",
+    "ar": "بقالة النور",
+    "wa": "971566738952",
+    "min": 15,
+    "hours": "7am – 1am",
+    "areas": [
+      "Tower A",
+      "Tower B",
+      "Al Khaleej Building",
+      "Rose Residence",
+      "Al Bustan Villas"
+    ],
+    "prices": {},
+    "off": [],
+    "demo": true
+  }
+]
