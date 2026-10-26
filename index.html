@@ -400,7 +400,7 @@ html[lang="ar"] .demo,html[lang="ar"] .tag small,html[lang="ar"] .name-main,html
       <section class="gh" id="ghPanel" aria-labelledby="ghTitle">
         <div id="ghOff">
           <h3 id="ghTitle" data-t="ghTitle">Connect GitHub to save shops</h3>
-          <p class="hint" data-t="ghIntro">Only you do this, once, on your own phone. Shop owners and customers never see this page. The token works like a password that lets this page save shops to your GitHub, so don’t share it.</p>
+          <p class="hint" data-t="ghIntro">Only you do this, once on each of your own devices (your phone, your laptop). Shop owners and customers never see this page. The token works like a password that lets this page save shops to your GitHub, so don’t share it.</p>
           <ol class="steps">
             <li data-t="ghStep0">Create two repositories: baqala (Public, the website) and baqala-private (Private, tick “Add a README file”). Skip this if you already have them.</li>
             <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" data-t="ghStep1">Create a fine-grained token on GitHub</a></li>
@@ -416,7 +416,7 @@ html[lang="ar"] .demo,html[lang="ar"] .tag small,html[lang="ar"] .name-main,html
         </div>
         <div class="gh-on" id="ghOn" hidden>
           <p id="ghStatus"></p>
-          <button class="linkish" type="button" id="ghDisconnect" data-t="ghDisconnect">Disconnect this phone</button>
+          <button class="linkish" type="button" id="ghDisconnect" data-t="ghDisconnect">Disconnect this device</button>
         </div>
       </section>
       <div class="reg-tools" id="regTools" hidden>
@@ -744,13 +744,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       copyMsg: 'Copy message', openMenu: 'Open menu', edit: 'Edit', share: 'Share', copiedMsg: 'Copied. Paste it into WhatsApp.',
       whatsapp: 'Shop WhatsApp', deliversTo: 'Delivers to',
       ghTitle: 'Connect GitHub to save shops',
-      ghIntro: 'Only you do this, once, on your own phone. Shop owners and customers never see this page. The token works like a password that lets this page save shops to your GitHub, so don’t share it.',
+      ghIntro: 'Only you do this, once on each of your own devices (your phone, your laptop). Shop owners and customers never see this page. The token works like a password that lets this page save shops to your GitHub, so don’t share it.',
       ghStep0: 'Create two repositories: baqala (Public, the website) and baqala-private (Private, tick “Add a README file”). Skip this if you already have them.',
       ghStep1: 'Create a fine-grained token on GitHub',
       ghStep2: 'Repository access: Only select repositories, then pick both repositories.',
       ghStep3: 'Permissions: set Contents to Read and write.',
       ghStep4: 'Generate the token, copy it and paste it below.',
-      ghRepo: 'Website repository (public)', ghData: 'Owner list repository (private)', ghToken: 'Token', ghConnect: 'Connect', ghDisconnect: 'Disconnect this phone',
+      ghRepo: 'Website repository (public)', ghData: 'Owner list repository (private)', ghToken: 'Token', ghConnect: 'Connect', ghDisconnect: 'Disconnect this device',
       ghStatus: (r, d) => `Shops save to github.com/${r} and owners to github.com/${d} (private). Menu changes go live about a minute after you save.`,
       ghChecking: 'Checking…', ghBadRepo: 'Write each repository as yourname/repository, and use two different ones.', ghNoToken: 'Paste the token from GitHub.',
       ghBadToken: 'GitHub didn’t accept that token. Make a new one and paste it again.',
@@ -835,13 +835,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       copyMsg: 'انسخ الرسالة', openMenu: 'افتح القائمة', edit: 'تعديل', share: 'مشاركة', copiedMsg: 'تم النسخ. الصقها في واتساب.',
       whatsapp: 'واتساب المحل', deliversTo: 'يوصل إلى',
       ghTitle: 'اربط GitHub لحفظ المحلات',
-      ghIntro: 'هذه الخطوة لك أنت فقط، مرة واحدة على هاتفك. أصحاب المحلات والزبائن لا يرون هذه الصفحة أبدًا. الرمز (Token) مثل كلمة سر تسمح لهذه الصفحة بحفظ المحلات في حسابك على GitHub، فلا تشاركه مع أحد.',
+      ghIntro: 'هذه الخطوة لك أنت فقط، مرة واحدة على كل جهاز من أجهزتك (هاتفك، حاسوبك). أصحاب المحلات والزبائن لا يرون هذه الصفحة أبدًا. الرمز (Token) مثل كلمة سر تسمح لهذه الصفحة بحفظ المحلات في حسابك على GitHub، فلا تشاركه مع أحد.',
       ghStep0: 'أنشئ مستودعين: baqala (عام Public، وهو الموقع) وbaqala-private (خاص Private، مع تفعيل “Add a README file”). تجاوز هذه الخطوة إن كانا موجودين.',
       ghStep1: 'أنشئ رمز وصول دقيق (fine-grained token) على GitHub',
       ghStep2: 'Repository access: اختر Only select repositories ثم المستودعين.',
       ghStep3: 'Permissions: اجعل Contents على Read and write.',
       ghStep4: 'أنشئ الرمز وانسخه والصقه هنا.',
-      ghRepo: 'مستودع الموقع (عام)', ghData: 'مستودع قائمة الأصحاب (خاص)', ghToken: 'الرمز', ghConnect: 'اربط', ghDisconnect: 'افصل هذا الهاتف',
+      ghRepo: 'مستودع الموقع (عام)', ghData: 'مستودع قائمة الأصحاب (خاص)', ghToken: 'الرمز', ghConnect: 'اربط', ghDisconnect: 'افصل هذا الجهاز',
       ghStatus: (r, d) => `تُحفظ المحلات في github.com/${r} والأصحاب في github.com/${d} (خاص). تظهر تغييرات القائمة بعد الحفظ بدقيقة تقريبًا.`,
       ghChecking: 'جارٍ التحقق…', ghBadRepo: 'اكتب كل مستودع بهذا الشكل: yourname/repository، واستخدم مستودعين مختلفين.', ghNoToken: 'الصق الرمز من GitHub.',
       ghBadToken: 'لم يقبل GitHub هذا الرمز. أنشئ رمزًا جديدًا والصقه مرة أخرى.',
