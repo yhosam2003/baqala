@@ -15,6 +15,20 @@
     ],
     "prices": {},
     "off": [],
-    "demo": true
+    "demo": true,
+    "paused": false
+  },
+  {
+    "slug": "bright-star",
+    "en": "Bright Star",
+    "ar": "النجوم المنورة",
+    "wa": "971566738952",
+    "min": 0,
+    "hours": "7am-1am",
+    "areas": [],
+    "prices": {},
+    "off": [],
+    "demo": false,
+    "paused": false
   }
 ]
