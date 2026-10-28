@@ -50,6 +50,12 @@
   --t-tea:#EEE4DA;
   --t-snacks:#F7E2E9;
   --t-home:#EAE6F5;
+  --t-canned:#F8E2DA;
+  --t-breakfast:#FAF0CF;
+  --t-sweets:#F2E1EE;
+  --t-frozen:#DDEEF7;
+  --t-care:#DDF2EA;
+  --t-baby:#FCEBDF;
   --photo-bg:#F3F5F4;
   --photo-blend:multiply;
   --photo-filter:none;
@@ -66,7 +72,7 @@
     --accent:#2DB487;--accent-ink:#03130D;--accent-soft:#15322A;--accent-chip:rgba(3,19,13,.16);
     --tag:#F2C73A;--tag-ink:#231B00;--slip:#1A231F;--slip-ink:#E1E9E5;
     --warn:#FF8B64;--warn-soft:#3A1F16;
-    --t-dairy:#1A2534;--t-bakery:#2D2519;--t-drinks:#152E2E;--t-fresh:#1A2D1C;--t-pantry:#2C2517;--t-tea:#2A221C;--t-snacks:#321C24;--t-home:#241E34;--photo-bg:#E3E3E3;--photo-blend:normal;--photo-filter:brightness(.89);
+    --t-dairy:#1A2534;--t-bakery:#2D2519;--t-drinks:#152E2E;--t-fresh:#1A2D1C;--t-pantry:#2C2517;--t-tea:#2A221C;--t-snacks:#321C24;--t-home:#241E34;--t-canned:#33201B;--t-breakfast:#2E2A15;--t-sweets:#2F1C2B;--t-frozen:#142A33;--t-care:#15302A;--t-baby:#33251C;--photo-bg:#E3E3E3;--photo-blend:normal;--photo-filter:brightness(.89);
     --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 26px rgba(0,0,0,.3);
     color-scheme:dark;
   }
@@ -77,7 +83,7 @@
   --accent:#2DB487;--accent-ink:#03130D;--accent-soft:#15322A;--accent-chip:rgba(3,19,13,.16);
   --tag:#F2C73A;--tag-ink:#231B00;--slip:#1A231F;--slip-ink:#E1E9E5;
   --warn:#FF8B64;--warn-soft:#3A1F16;
-  --t-dairy:#1A2534;--t-bakery:#2D2519;--t-drinks:#152E2E;--t-fresh:#1A2D1C;--t-pantry:#2C2517;--t-tea:#2A221C;--t-snacks:#321C24;--t-home:#241E34;--photo-bg:#E3E3E3;--photo-blend:normal;--photo-filter:brightness(.89);
+  --t-dairy:#1A2534;--t-bakery:#2D2519;--t-drinks:#152E2E;--t-fresh:#1A2D1C;--t-pantry:#2C2517;--t-tea:#2A221C;--t-snacks:#321C24;--t-home:#241E34;--t-canned:#33201B;--t-breakfast:#2E2A15;--t-sweets:#2F1C2B;--t-frozen:#142A33;--t-care:#15302A;--t-baby:#33251C;--photo-bg:#E3E3E3;--photo-blend:normal;--photo-filter:brightness(.89);
   --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 26px rgba(0,0,0,.3);
   color-scheme:dark;
 }
@@ -278,9 +284,19 @@ main .page{padding-block:18px calc(48px + env(safe-area-inset-bottom,0px));gap:1
 .prices{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .prices summary{cursor:pointer;padding:14px;font-weight:600}
 .prices summary .hint{display:inline;font-weight:400}
-.pbody{display:grid;gap:16px;padding:0 14px 14px}
-.pcat{display:grid;gap:2px}
-.pcat h4{margin:0 0 4px;font:600 12px/1.3 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pbody{display:grid;gap:12px;padding:0 14px 14px}
+.psum{margin:0;font-size:14px;font-weight:600}
+.pcat{border-top:1px solid var(--line)}
+.pcat:first-child{border-top:0}
+.pcat-head{display:grid;grid-template-columns:32px minmax(0,1fr);align-items:center;min-height:54px}
+.pall{display:flex;align-items:center;align-self:stretch;cursor:pointer}
+.pall input{width:20px;height:20px;margin:0;accent-color:var(--accent)}
+.pcat-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:54px;padding:0;border:0;background:transparent;color:var(--ink);font:600 15px/1.25 var(--f-body);text-align:start;cursor:pointer}
+.pcat-name{flex:1;min-width:0}
+.pcat-n{flex:none;font:500 13px/1 var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.pcat-btn .chev{flex:none;color:var(--muted);transition:transform .15s ease}
+.pcat.open .chev{transform:rotate(180deg)}
+.prows{padding-bottom:6px}
 .prow{display:grid;grid-template-columns:22px minmax(0,1fr) 92px;gap:10px;align-items:center;min-height:52px;border-top:1px solid var(--line)}
 .prow input[type="checkbox"]{width:20px;height:20px;margin:0;accent-color:var(--accent)}
 .prow .pn{min-width:0;font-size:14px;line-height:1.25;overflow-wrap:anywhere}
@@ -319,7 +335,7 @@ a.btn{display:inline-flex;align-items:center;justify-content:center;text-decorat
 .qrbox{display:grid;gap:10px;justify-items:center;width:100%}
 .qrbox img{width:min(100%,300px);height:auto;border-radius:12px;border:1px solid var(--line)}
 
-html[lang="ar"] .demo,html[lang="ar"] .tag small,html[lang="ar"] .name-main,html[lang="ar"] .pill,html[lang="ar"] .pcat h4,html[lang="ar"] .meta .brand,html[lang="ar"] .lbl-sub{letter-spacing:0;text-transform:none}
+html[lang="ar"] .demo,html[lang="ar"] .tag small,html[lang="ar"] .name-main,html[lang="ar"] .pill,html[lang="ar"] .meta .brand,html[lang="ar"] .lbl-sub{letter-spacing:0;text-transform:none}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -563,7 +579,14 @@ html[lang="ar"] .demo,html[lang="ar"] .tag small,html[lang="ar"] .name-main,html
         <summary><span data-t="ePrices">Products and prices</span> <span class="hint" data-t="optional">(optional)</span></summary>
         <div class="pbody">
           <p class="hint" data-t="ePricesHint">Untick what the shop doesn’t sell. Change a price only where it’s different.</p>
+          <p class="psum" id="ePriceSum" aria-live="polite"></p>
+          <div class="search">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M16 16l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <label class="sr" for="ePriceQ" data-t="pSearchLabel">Search products</label>
+            <input id="ePriceQ" type="search" autocomplete="off" enterkeyhint="search" data-tp="pSearchPh" placeholder="Search products">
+          </div>
           <div id="ePriceList"></div>
+          <p class="hint" id="ePriceNone" hidden></p>
         </div>
       </details>
     </form>
@@ -607,13 +630,19 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   /* ---------- Shared catalog: real UAE brands; each shop can change prices or hide items ---------- */
   const CATS = [
     { id: 'dairy', en: 'Dairy & eggs', ar: 'ألبان وبيض' },
-    { id: 'bakery', en: 'Bread', ar: 'خبز' },
+    { id: 'bakery', en: 'Bread & bakery', ar: 'خبز ومخبوزات' },
     { id: 'drinks', en: 'Water & drinks', ar: 'مياه ومشروبات' },
     { id: 'fresh', en: 'Fruit & veg', ar: 'خضار وفواكه' },
-    { id: 'pantry', en: 'Rice, oil & pantry', ar: 'أرز وزيت ومؤن' },
+    { id: 'pantry', en: 'Rice, oil & cooking', ar: 'أرز وزيت ومواد طبخ' },
+    { id: 'canned', en: 'Canned food & sauces', ar: 'معلبات وصلصات' },
+    { id: 'breakfast', en: 'Breakfast & spreads', ar: 'الفطور والمربيات' },
     { id: 'tea', en: 'Tea & coffee', ar: 'شاي وقهوة' },
-    { id: 'snacks', en: 'Snacks & chocolate', ar: 'سناكات وشوكولاتة' },
-    { id: 'home', en: 'Cleaning & household', ar: 'منظفات ومنزل' }
+    { id: 'snacks', en: 'Chips & nuts', ar: 'شيبس ومكسرات' },
+    { id: 'sweets', en: 'Chocolate & biscuits', ar: 'شوكولاتة وبسكويت' },
+    { id: 'frozen', en: 'Frozen & ice cream', ar: 'مجمدات وآيس كريم' },
+    { id: 'home', en: 'Cleaning & household', ar: 'منظفات ومنزل' },
+    { id: 'care', en: 'Personal care', ar: 'العناية الشخصية' },
+    { id: 'baby', en: 'Baby care', ar: 'مستلزمات الأطفال' }
   ];
   // [id, category, brand (origin for produce), brand in Arabic, product, product in Arabic, size, size in Arabic, default price AED]
   const CATALOG = [
@@ -631,12 +660,29 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ['eggs-mazraa-30', 'dairy', 'Al Mazraa', 'المزرعة', 'Fresh Eggs', 'بيض طازج', '30 pcs', '30 حبة', 24.00],
     ['eggs-farmland-30', 'dairy', 'Farmland', 'فارملاند', 'Medium Fresh Eggs', 'بيض طازج وسط', '30 pcs', '30 حبة', 21.60],
     ['eggs-mazraa-6', 'dairy', 'Al Mazraa', 'المزرعة', 'Medium White Eggs', 'بيض أبيض وسط', '6 pcs', '6 حبات', 5.40],
+    ['yoghurt-almarai-1kg', 'dairy', 'Almarai', 'المراعي', 'Full Fat Fresh Yoghurt', 'زبادي طازج كامل الدسم', '1 kg', '1 كغ', 9.60],
+    ['yoghurt-alain-170', 'dairy', 'Al Ain Farms', 'مزارع العين', 'Full Cream Fresh Yoghurt', 'زبادي طازج كامل الدسم', '170 g', '170 غ', 1.80],
+    ['laban-almarai-2l', 'dairy', 'Almarai', 'المراعي', 'Full Fat Fresh Laban', 'لبن طازج كامل الدسم', '2 L', '2 لتر', 16.20],
+    ['milk-almarai-uht-1l', 'dairy', 'Almarai', 'المراعي', 'Long Life Full Fat Milk', 'حليب طويل الأجل كامل الدسم', '1 L', '1 لتر', 7.80],
+    ['milk-nijoom-choc-6', 'dairy', 'Almarai', 'المراعي', 'Nijoom Chocolate Milk', 'حليب نجوم بالشوكولاتة', '6 × 150 ml', '6 × 150 مل', 13.80],
+    ['milk-nido-400', 'dairy', 'Nido', 'نيدو', 'Fortified Milk Powder', 'حليب بودرة مدعّم', '400 g', '400 غ', 28.74],
+    ['milk-rainbow-170', 'dairy', 'Rainbow', 'رينبو', 'Evaporated Milk', 'حليب مبخّر', '170 g', '170 غ', 3.54],
+    ['milk-condensed-nestle', 'dairy', 'Nestlé', 'نستله', 'Sweetened Condensed Milk', 'حليب مكثف محلى', '370 g', '370 غ', 13.50],
+    ['butter-almarai-100', 'dairy', 'Almarai', 'المراعي', 'Unsalted Butter', 'زبدة غير مملحة', '100 g', '100 غ', 9.54],
+    ['cream-nestle-160', 'dairy', 'Nestlé', 'نستله', 'All Purpose Cream', 'قشطة لجميع الاستخدامات', '160 g', '160 غ', 9.00],
+    ['cheese-feta-almarai', 'dairy', 'Almarai', 'المراعي', 'Full Cream Feta Cheese', 'جبنة فيتا كاملة الدسم', '200 g', '200 غ', 8.10],
+    ['cheese-triangles-8', 'dairy', 'La Vache Qui Rit', 'لافاش كيري', 'Cheese Triangles, 8 Portions', 'جبنة مثلثات، 8 قطع', '120 g', '120 غ', 7.80],
+    ['cheese-kiri-6', 'dairy', 'Kiri', 'كيري', 'Cream Cheese Squares, 6 Portions', 'جبنة كريمية مكعبات، 6 قطع', '100 g', '100 غ', 11.50],
     ['bread-jadeed-arabic', 'bakery', 'Al Jadeed', 'الجديد', 'Arabic Bread, White', 'خبز عربي أبيض', '175 g', '175 غ', 2.00],
     ['bread-jadeed-lebnani', 'bakery', 'Al Jadeed', 'الجديد', 'Lebanese Bread, King Size', 'خبز لبناني حجم كبير', '1 pack', 'ربطة', 3.50],
     ['bread-yaumi-white', 'bakery', 'Yaumi', 'يومي', 'Sliced White Bread', 'خبز توست أبيض', '550 g', '550 غ', 8.34],
     ['bread-yaumi-brown', 'bakery', 'Yaumi', 'يومي', 'Sliced Brown Bread', 'خبز توست أسمر', '600 g', '600 غ', 8.50],
     ['bread-rawabi-white', 'bakery', 'Al Rawabi Bakerz', 'الروابي بيكرز', 'Sliced White Bread', 'خبز توست أبيض', '600 g', '600 غ', 7.80],
     ['bread-khayam-white', 'bakery', 'Al Khayam', 'الخيام', 'Sliced White Bread, Large', 'خبز توست أبيض كبير', '600 g', '600 غ', 5.50],
+    ['rolls-modern-4', 'bakery', 'Modern Bakery', 'مودرن بيكري', 'Plain Sandwich Rolls', 'خبز ساندويتش', '4 pcs', '4 حبات', 4.50],
+    ['buns-lusine-6', 'bakery', 'L’usine', 'لوزين', 'Sesame Burger Buns', 'خبز برجر بالسمسم', '6 pcs', '6 حبات', 5.75],
+    ['croissant-7days', 'bakery', '7 Days', 'سفن دايز', 'Croissant, Cocoa & Vanilla Filling', 'كرواسون بحشوة الكاكاو والفانيلا', '55 g', '55 غ', 3.20],
+    ['cake-yaumi-marble', 'bakery', 'Yaumi', 'يومي', 'Marble Slice Cake', 'كيك رخامي', '70 g', '70 غ', 3.10],
     ['water-alain-15', 'drinks', 'Al Ain', 'العين', 'Drinking Water', 'مياه شرب', '1.5 L', '1.5 لتر', 2.40],
     ['water-maidubai-12', 'drinks', 'Mai Dubai', 'ماي دبي', 'Drinking Water', 'مياه شرب', '12 × 330 ml', '12 × 330 مل', 7.95],
     ['water-alain-500', 'drinks', 'Al Ain', 'العين', 'Mineral Water', 'مياه معدنية', '500 ml', '500 مل', 1.20],
@@ -648,6 +694,16 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ['oj-alain-1l', 'drinks', 'Al Ain Farms', 'مزارع العين', 'Orange Juice, No Added Sugar', 'عصير برتقال بدون سكر مضاف', '1 L', '1 لتر', 8.20],
     ['oj-rawabi-15', 'drinks', 'Al Rawabi', 'الروابي', 'Orange Juice', 'عصير برتقال', '1.5 L', '1.5 لتر', 9.99],
     ['apple-alain-200', 'drinks', 'Al Ain Farms', 'مزارع العين', 'Apple Juice', 'عصير تفاح', '200 ml', '200 مل', 1.69],
+    ['coke-can', 'drinks', 'Coca-Cola', 'كوكا كولا', 'Original Taste Can', 'مشروب غازي، علبة', '330 ml', '330 مل', 3.60],
+    ['sprite-500', 'drinks', 'Sprite', 'سبرايت', 'Lemon Lime Soft Drink', 'مشروب غازي بنكهة الليمون', '500 ml', '500 مل', 4.50],
+    ['dew-can', 'drinks', 'Mountain Dew', 'ماونتن ديو', 'Soft Drink Can', 'مشروب غازي، علبة', '330 ml', '330 مل', 3.50],
+    ['mirinda-can', 'drinks', 'Mirinda', 'ميرندا', 'Orange Soft Drink Can', 'مشروب غازي بالبرتقال، علبة', '330 ml', '330 مل', 3.00],
+    ['redbull-250', 'drinks', 'Red Bull', 'ريد بُل', 'Energy Drink', 'مشروب طاقة', '250 ml', '250 مل', 11.50],
+    ['barbican-pomegranate', 'drinks', 'Barbican', 'باربيكان', 'Pomegranate Malt Drink', 'شراب الشعير بالرمان', '330 ml', '330 مل', 4.80],
+    ['icetea-lipton-peach', 'drinks', 'Lipton', 'ليبتون', 'Peach Ice Tea Can', 'شاي مثلج بالخوخ، علبة', '315 ml', '315 مل', 3.66],
+    ['rani-mango-can', 'drinks', 'Rani', 'راني', 'Mango Juice with Pulp, No Added Sugar', 'عصير مانجو بقطع الفاكهة بدون سكر مضاف', '240 ml', '240 مل', 2.52],
+    ['lemonmint-rawabi-200', 'drinks', 'Al Rawabi', 'الروابي', 'Lemon & Mint Juice', 'عصير ليمون بالنعناع', '200 ml', '200 مل', 3.60],
+    ['tang-mango', 'drinks', 'Tang', 'تانج', 'Mango Instant Drink Powder', 'مسحوق شراب المانجو', '375 g', '375 غ', 11.95],
     ['tomato', 'fresh', 'Oman', 'عُمان', 'Tomatoes', 'طماطم', '1 kg', '1 كغ', 5.00],
     ['cucumber', 'fresh', '', '', 'Cucumber', 'خيار', '500 g', '500 غ', 3.60],
     ['onion', 'fresh', 'India', 'الهند', 'Onion', 'بصل', '500 g', '500 غ', 3.50],
@@ -658,6 +714,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ['apple-red', 'fresh', 'Iran', 'إيران', 'Red Apple', 'تفاح أحمر', '1 kg', '1 كغ', 14.00],
     ['mandarin', 'fresh', '', '', 'Seedless Mandarin', 'يوسفي بدون بذور', '500 g', '500 غ', 9.00],
     ['orange-valencia', 'fresh', '', '', 'Valencia Oranges', 'برتقال فالنسيا', '500 g', '500 غ', 4.20],
+    ['banana', 'fresh', '', '', 'Bananas', 'موز', '1 kg', '1 كغ', 8.45],
+    ['lime', 'fresh', 'India', 'الهند', 'Lime', 'ليمون', '500 g', '500 غ', 5.00],
+    ['lettuce', 'fresh', 'GCC', 'الخليج', 'Romaine Lettuce', 'خس روماني', '1 head', 'حبة', 6.60],
+    ['parsley', 'fresh', 'UAE', 'الإمارات', 'Parsley', 'بقدونس', '1 bunch', 'حزمة', 2.75],
+    ['coriander', 'fresh', 'UAE', 'الإمارات', 'Coriander', 'كزبرة', '200 g', '200 غ', 4.40],
+    ['chilli-green', 'fresh', 'Iran', 'إيران', 'Green Chilli', 'فلفل أخضر حار', '100 g', '100 غ', 1.98],
+    ['ginger', 'fresh', '', '', 'Ginger', 'زنجبيل', '250 g', '250 غ', 3.60],
     ['rice-sinnara-5', 'pantry', 'Al Sinnara', 'السنارة', 'Sijada XXL Basmati Rice', 'أرز بسمتي سجادة XXL', '5 kg', '5 كغ', 55.50],
     ['rice-indiagate-5', 'pantry', 'India Gate', 'إنديا جيت', 'Super Basmati Rice', 'أرز بسمتي سوبر', '5 kg', '5 كغ', 67.20],
     ['sugar-sis-2', 'pantry', 'SIS', 'سيس', 'Fine Granulated White Sugar', 'سكر أبيض ناعم', '2 kg', '2 كغ', 10.75],
@@ -668,24 +731,83 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ['pasta-emirates', 'pantry', 'Emirates', 'الإمارات', 'Spaghetti', 'سباغيتي', '400 g', '400 غ', 5.94],
     ['indomie-chicken-5', 'pantry', 'Indomie', 'إندومي', 'Special Chicken Noodles', 'نودلز بنكهة الدجاج', '5 × 75 g', '5 × 75 غ', 9.75],
     ['indomie-fried-5', 'pantry', 'Indomie', 'إندومي', 'Hot & Spicy Fried Noodles', 'نودلز مقلية حارة', '5 × 80 g', '5 × 80 غ', 9.75],
-    ['tuna-alali', 'pantry', 'Al Alali', 'العلالي', 'Solid Tuna in Sunflower Oil', 'تونة قطعة واحدة بزيت دوار الشمس', '170 g', '170 غ', 9.50],
-    ['tuna-cg', 'pantry', 'California Garden', 'كاليفورنيا جاردن', 'Light Solid Tuna in Sunflower Oil', 'تونة فاتحة بزيت دوار الشمس', '185 g', '185 غ', 12.60],
-    ['tuna-americana', 'pantry', 'Americana', 'أمريكانا', 'Tuna Flakes in Vegetable Oil', 'رقائق تونة بالزيت النباتي', '170 g', '170 غ', 6.60],
-    ['foul-americana', 'pantry', 'Americana', 'أمريكانا', 'Foul with Chickpeas', 'فول مع حمص', '400 g', '400 غ', 13.20],
-    ['chickpeas-farmfresh', 'pantry', 'Farm Fresh', 'فارم فريش', 'Premium Chickpeas', 'حمص', '400 g', '400 غ', 4.20],
-    ['beans-cg', 'pantry', 'California Garden', 'كاليفورنيا جاردن', 'Baked Beans in Tomato Sauce', 'فاصوليا بصلصة الطماطم', '220 g', '220 غ', 4.50],
+    ['flour-albaker-1kg', 'pantry', 'Al Baker', 'البيكر', 'All Purpose Flour', 'طحين لجميع الاستخدامات', '1 kg', '1 كغ', 7.80],
+    ['salt-bayara-1kg', 'pantry', 'Bayara', 'بيارة', 'Fine Table Salt', 'ملح طعام ناعم', '1 kg', '1 كغ', 4.50],
+    ['lentils-red-bayara', 'pantry', 'Bayara', 'بيارة', 'Red Lentils (Masoor Dal)', 'عدس أحمر', '1 kg', '1 كغ', 13.00],
+    ['ghee-aseel-500', 'pantry', 'Aseel', 'أصيل', 'Vegetable Ghee', 'سمن نباتي', '500 ml', '500 مل', 10.74],
+    ['olive-alain-250', 'pantry', 'Al Ain', 'العين', 'Extra Virgin Olive Oil', 'زيت زيتون بكر ممتاز', '250 ml', '250 مل', 18.95],
+    ['stock-maggi-30', 'pantry', 'Maggi', 'ماجي', 'Chicken Stock Cubes', 'مكعبات مرق الدجاج', '30 × 18 g', '30 × 18 غ', 34.00],
+    ['vermicelli-emirates', 'pantry', 'Emirates', 'الإمارات', 'Fine Vermicelli', 'شعيرية ناعمة', '500 g', '500 غ', 8.25],
+    ['macaroni-khaleejia', 'pantry', 'Al Khaleejia', 'الخليجية', 'Elbow Macaroni', 'معكرونة كوع', '400 g', '400 غ', 7.50],
+    ['turmeric-sv', 'pantry', 'Spice Village', 'سبايس فيلج', 'Turmeric Powder', 'كركم مطحون', '190 g', '190 غ', 12.60],
+    ['pepper-ummmaryam', 'pantry', 'Umm Maryam', 'أم مريم', 'Black Pepper Powder', 'فلفل أسود مطحون', '250 g', '250 غ', 25.50],
+    ['tuna-alali', 'canned', 'Al Alali', 'العلالي', 'Solid Tuna in Sunflower Oil', 'تونة قطعة واحدة بزيت دوار الشمس', '170 g', '170 غ', 9.50],
+    ['tuna-cg', 'canned', 'California Garden', 'كاليفورنيا جاردن', 'Light Solid Tuna in Sunflower Oil', 'تونة فاتحة بزيت دوار الشمس', '185 g', '185 غ', 12.60],
+    ['tuna-americana', 'canned', 'Americana', 'أمريكانا', 'Tuna Flakes in Vegetable Oil', 'رقائق تونة بالزيت النباتي', '170 g', '170 غ', 6.60],
+    ['foul-americana', 'canned', 'Americana', 'أمريكانا', 'Foul with Chickpeas', 'فول مع حمص', '400 g', '400 غ', 13.20],
+    ['chickpeas-farmfresh', 'canned', 'Farm Fresh', 'فارم فريش', 'Premium Chickpeas', 'حمص', '400 g', '400 غ', 4.20],
+    ['beans-cg', 'canned', 'California Garden', 'كاليفورنيا جاردن', 'Baked Beans in Tomato Sauce', 'فاصوليا بصلصة الطماطم', '220 g', '220 غ', 4.50],
+    ['tomatopaste-alain-135', 'canned', 'Al Ain', 'العين', 'Tomato Paste', 'معجون طماطم', '135 g', '135 غ', 1.80],
+    ['ketchup-heinz', 'canned', 'Heinz', 'هاينز', 'Tomato Ketchup', 'كاتشب الطماطم', '342 g', '342 غ', 16.20],
+    ['mayo-heinz', 'canned', 'Heinz', 'هاينز', 'Classic Mayonnaise', 'مايونيز كلاسيك', '310 ml', '310 مل', 18.50],
+    ['vinegar-farmfresh', 'canned', 'Farm Fresh', 'فارم فريش', 'White Vinegar', 'خل أبيض', '473 ml', '473 مل', 6.60],
+    ['foul-cg-450', 'canned', 'California Garden', 'كاليفورنيا جاردن', 'Foul Medammes', 'فول مدمس', '450 g', '450 غ', 5.50],
+    ['mushrooms-farmfresh', 'canned', 'Farm Fresh', 'فارم فريش', 'Mushroom Pieces & Stems', 'قطع وسيقان فطر', '425 g', '425 غ', 7.14],
+    ['corn-greengiant', 'canned', 'Green Giant', 'جرين جاينت', 'Sweet Corn Niblets', 'حبوب ذرة حلوة', '198 g', '198 غ', 8.40],
+    ['luncheon-zwan', 'canned', 'Zwan', 'زوان', 'Chicken Luncheon Meat', 'لانشون دجاج', '340 g', '340 غ', 16.74],
+    ['hummus-cg', 'canned', 'California Garden', 'كاليفورنيا جاردن', 'Hummus with Tahini', 'حمص بالطحينة', '400 g', '400 غ', 7.14],
+    ['olives-cordoba', 'canned', 'Cordoba', 'قرطبة', 'Plain Black Olives', 'زيتون أسود', '200 g', '200 غ', 10.74],
+    ['nutella-350', 'breakfast', 'Nutella', 'نوتيلا', 'Hazelnut Cocoa Spread', 'شوكولاتة بالبندق للدهن', '350 g', '350 غ', 22.50],
+    ['peanutbutter-ag', 'breakfast', 'American Garden', 'أمريكان جاردن', 'Creamy Peanut Butter', 'زبدة فول سوداني كريمية', '454 g', '454 غ', 31.14],
+    ['jam-alali-mixed', 'breakfast', 'Al Alali', 'العلالي', 'Mixed Fruit Jam', 'مربى فواكه مشكلة', '400 g', '400 غ', 12.25],
+    ['honey-alshifa-400', 'breakfast', 'Al Shifa', 'الشفاء', 'Natural Honey, Squeeze Bottle', 'عسل طبيعي، عبوة ضغط', '400 g', '400 غ', 21.54],
+    ['cornflakes-kelloggs', 'breakfast', 'Kellogg’s', 'كيلوغز', 'Corn Flakes', 'كورن فليكس', '500 g', '500 غ', 31.50],
+    ['tahina-halwani', 'breakfast', 'Halwani Bros', 'حلواني إخوان', 'Tahina', 'طحينة', '250 g', '250 غ', 15.30],
+    ['dates-fard', 'breakfast', 'Date Crown', 'ديت كراون', 'Fard Dates', 'تمر فرض', '500 g', '500 غ', 11.94],
     ['tea-lipton-25', 'tea', 'Lipton', 'ليبتون', 'Yellow Label Tea Bags', 'شاي العلامة الصفراء، أكياس', '25 bags', '25 كيس', 11.00],
     ['tea-lipton-loose', 'tea', 'Lipton', 'ليبتون', 'Yellow Label Loose Tea', 'شاي العلامة الصفراء، سائب', '400 g', '400 غ', 16.50],
     ['coffee-nescafe-95', 'tea', 'Nescafé', 'نسكافيه', 'Classic Instant Coffee', 'قهوة كلاسيك سريعة التحضير', '95 g', '95 غ', 21.95],
     ['coffee-nescafe-3in1', 'tea', 'Nescafé', 'نسكافيه', '3-in-1 Classic Sachets', 'أكياس 3 في 1 كلاسيك', '24 × 20 g', '24 × 20 غ', 47.00],
     ['coffee-alain-arabic', 'tea', 'Al Ain', 'العين', 'Arabic Coffee with Cardamom', 'قهوة عربية بالهيل', '250 g', '250 غ', 30.60],
+    ['tea-redlabel-100', 'tea', 'Brooke Bond', 'بروك بوند', 'Red Label Black Tea Bags', 'شاي ريد ليبل الأسود، أكياس', '100 bags', '100 كيس', 14.50],
+    ['tea-alokozay-50', 'tea', 'Alokozay', 'الكوزاي', 'Black Tea Bags', 'شاي أسود، أكياس', '50 bags', '50 كيس', 11.70],
+    ['tea-lipton-green-mint', 'tea', 'Lipton', 'ليبتون', 'Green Tea with Mint', 'شاي أخضر بالنعناع', '25 bags', '25 كيس', 16.00],
+    ['coffeemate-400', 'tea', 'Coffee-mate', 'كوفي ميت', 'Original Coffee Creamer', 'مبيّض قهوة أصلي', '400 g', '400 غ', 21.00],
     ['lays-salt', 'snacks', 'Lay’s', 'ليز', 'Salted Potato Chips', 'شيبس بطاطس بالملح', '155 g', '155 غ', 9.54],
     ['lays-ketchup', 'snacks', 'Lay’s', 'ليز', 'Tomato Ketchup Chips', 'شيبس بنكهة الكاتشب', '155 g', '155 غ', 9.54],
     ['cheetos-flamin', 'snacks', 'Cheetos', 'شيتوس', 'Flamin’ Hot Crunchy', 'فلامين هوت مقرمش', '35.4 g', '35.4 غ', 4.95],
-    ['kinder-bueno', 'snacks', 'Kinder', 'كيندر', 'Bueno Milk Chocolate', 'بوينو بالحليب', '43 g', '43 غ', 5.50],
-    ['kinder-8', 'snacks', 'Kinder', 'كيندر', 'Chocolate Bars, 8 Pack', 'ألواح شوكولاتة، 8 قطع', '100 g', '100 غ', 9.95],
-    ['maltesers', 'snacks', 'Maltesers', 'مالتيزرز', 'Milk Chocolate', 'شوكولاتة بالحليب', '37 g', '37 غ', 4.95],
-    ['mms-peanut', 'snacks', 'M&M’s', 'إم آند إمز', 'Peanut Chocolate', 'شوكولاتة بالفول السوداني', '45 g', '45 غ', 4.80],
+    ['lays-chili', 'snacks', 'Lay’s', 'ليز', 'Chili Potato Chips', 'شيبس بطاطس بالفلفل الحار', '155 g', '155 غ', 9.54],
+    ['pringles-hotspicy', 'snacks', 'Pringles', 'برينجلز', 'Hot & Spicy Chips', 'شيبس حار', '165 g', '165 غ', 9.50],
+    ['doritos-nacho', 'snacks', 'Doritos', 'دوريتوس', 'Nacho Cheese Tortilla Chips', 'شيبس تورتيلا بالجبنة', '180 g', '180 غ', 11.40],
+    ['pistachio-best', 'snacks', 'Best', 'بست', 'Salted Pistachios', 'فستق حلبي مملح', '150 g', '150 غ', 16.20],
+    ['mixnuts-best', 'snacks', 'Best', 'بست', 'Salted Mixed Nuts', 'مكسرات مشكلة مملحة', '150 g', '150 غ', 8.34],
+    ['kinder-bueno', 'sweets', 'Kinder', 'كيندر', 'Bueno Milk Chocolate', 'بوينو بالحليب', '43 g', '43 غ', 5.50],
+    ['kinder-8', 'sweets', 'Kinder', 'كيندر', 'Chocolate Bars, 8 Pack', 'ألواح شوكولاتة، 8 قطع', '100 g', '100 غ', 9.95],
+    ['maltesers', 'sweets', 'Maltesers', 'مالتيزرز', 'Milk Chocolate', 'شوكولاتة بالحليب', '37 g', '37 غ', 4.95],
+    ['mms-peanut', 'sweets', 'M&M’s', 'إم آند إمز', 'Peanut Chocolate', 'شوكولاتة بالفول السوداني', '45 g', '45 غ', 4.80],
+    ['galaxy-36', 'sweets', 'Galaxy', 'جالكسي', 'Smooth Milk Chocolate', 'شوكولاتة بالحليب', '36 g', '36 غ', 4.95],
+    ['kitkat-2f', 'sweets', 'KitKat', 'كيت كات', '2 Fingers Milk Chocolate', 'شوكولاتة بالحليب، إصبعان', '20.5 g', '20.5 غ', 4.50],
+    ['mars-40', 'sweets', 'Mars', 'مارس', 'Chocolate Bar', 'لوح شوكولاتة', '40 g', '40 غ', 4.50],
+    ['twix-46', 'sweets', 'Twix', 'تويكس', 'Twin Chocolate Bar', 'لوح شوكولاتة مزدوج', '46 g', '46 غ', 5.00],
+    ['dairymilk-32', 'sweets', 'Cadbury', 'كادبوري', 'Dairy Milk Chocolate', 'شوكولاتة ديري ميلك', '32 g', '32 غ', 4.50],
+    ['kinder-joy', 'sweets', 'Kinder', 'كيندر', 'Joy Egg with Toy', 'كيندر جوي مع لعبة', '20 g', '20 غ', 5.95],
+    ['oreo-36', 'sweets', 'Oreo', 'أوريو', 'Original Sandwich Biscuits', 'بسكويت محشو أصلي', '36.8 g', '36.8 غ', 1.80],
+    ['marie-tiffany', 'sweets', 'Tiffany', 'تيفاني', 'Marie Tea Biscuits', 'بسكويت ماري', '200 g', '200 غ', 3.54],
+    ['digestive-tiffany', 'sweets', 'Tiffany', 'تيفاني', 'Digestive Biscuits', 'بسكويت دايجستف', '250 g', '250 غ', 6.60],
+    ['loacker-napolitaner', 'sweets', 'Loacker', 'لواكر', 'Napolitaner Wafer', 'ويفر نابوليتانر', '45 g', '45 غ', 4.80],
+    ['gum-extra-spearmint', 'sweets', 'Wrigley’s Extra', 'ريجليز إكسترا', 'Spearmint Sugar-Free Gum', 'علكة بالنعناع خالية من السكر', '10 pellets', '10 حبات', 3.50],
+    ['mentos-fruit', 'sweets', 'Mentos', 'منتوس', 'Fruit Chewy Candy', 'حلوى مطاطية بالفواكه', '37 g', '37 غ', 3.00],
+    ['chicken-sadia-900', 'frozen', 'Sadia', 'ساديا', 'Whole Chicken', 'دجاج كامل', '900 g', '900 غ', 19.80],
+    ['nuggets-sadia', 'frozen', 'Sadia', 'ساديا', 'Chicken Nuggets', 'ناجتس دجاج', '270 g', '270 غ', 15.60],
+    ['franks-sadia', 'frozen', 'Sadia', 'ساديا', 'Chicken Franks', 'نقانق دجاج', '340 g', '340 غ', 5.40],
+    ['burger-sadia-4', 'frozen', 'Sadia', 'ساديا', 'Chicken Burgers, 4 Pieces', 'برجر دجاج، 4 قطع', '224 g', '224 غ', 9.54],
+    ['fries-sadia-1kg', 'frozen', 'Sadia', 'ساديا', 'French Fries, Medium Cut', 'بطاطس مقلية', '1 kg', '1 كغ', 13.50],
+    ['mixveg-alain', 'frozen', 'Al Ain', 'العين', 'Frozen Mixed Vegetables', 'خضار مشكلة مجمدة', '400 g', '400 غ', 8.34],
+    ['peas-alain', 'frozen', 'Al Ain', 'العين', 'Frozen Green Peas', 'بازلاء خضراء مجمدة', '400 g', '400 غ', 8.99],
+    ['icecream-cone-igloo', 'frozen', 'Igloo', 'إيجلو', 'Vanilla Cone', 'آيس كريم كون بالفانيلا', '110 ml', '110 مل', 3.95],
+    ['icecream-cup-igloo', 'frozen', 'Igloo', 'إيجلو', 'Chocolate Ice Cream Cup', 'كوب آيس كريم بالشوكولاتة', '125 ml', '125 مل', 3.75],
+    ['icecream-igloo-1l', 'frozen', 'Igloo', 'إيجلو', 'Chocolate Ice Cream Tub', 'آيس كريم بالشوكولاتة، علبة', '1 L', '1 لتر', 17.70],
+    ['magnum-almond', 'frozen', 'Magnum', 'ماغنوم', 'Almond Ice Cream Stick', 'آيس كريم باللوز', '100 ml', '100 مل', 14.40],
     ['tissue-masafi-130', 'home', 'Masafi', 'مسافي', '2-Ply Facial Tissues', 'مناديل وجه طبقتين', '130 sheets', '130 منديل', 4.20],
     ['tissue-masafi-5', 'home', 'Masafi', 'مسافي', '2-Ply Facial Tissues, 5 Boxes', 'مناديل وجه طبقتين، 5 علب', '5 × 150 sheets', '5 × 150 منديل', 21.60],
     ['toilet-fine-10', 'home', 'Fine', 'فاين', 'Comfort XL Toilet Paper', 'ورق حمام كومفورت XL', '10 rolls', '10 لفات', 21.54],
@@ -694,11 +816,40 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ['dish-lux-725', 'home', 'Lux', 'لوكس', 'Lemon Dishwashing Liquid', 'سائل غسيل الصحون بالليمون', '725 ml', '725 مل', 9.90],
     ['laundry-ariel-15', 'home', 'Ariel', 'آريال', 'Automatic Laundry Powder', 'مسحوق غسيل أوتوماتيك', '1.5 kg', '1.5 كغ', 22.00],
     ['softener-downy-1l', 'home', 'Downy', 'داوني', 'Concentrated Fabric Conditioner', 'منعّم أقمشة مركّز', '1 L', '1 لتر', 21.60],
-    ['bleach-clorox-189', 'home', 'Clorox', 'كلوركس', 'Original Bleach', 'مبيّض أصلي', '1.89 L', '1.89 لتر', 17.23]
+    ['bleach-clorox-189', 'home', 'Clorox', 'كلوركس', 'Original Bleach', 'مبيّض أصلي', '1.89 L', '1.89 لتر', 17.23],
+    ['dettol-500', 'home', 'Dettol', 'ديتول', 'Antiseptic Disinfectant Liquid', 'سائل مطهر', '500 ml', '500 مل', 19.14],
+    ['floorcleaner-dettol', 'home', 'Dettol', 'ديتول', 'Floor Cleaner, Lemon', 'منظف أرضيات بالليمون', '900 ml', '900 مل', 22.25],
+    ['harpic-500', 'home', 'Harpic', 'هاربيك', 'Original Toilet Cleaner', 'منظف المراحيض', '500 ml', '500 مل', 11.40],
+    ['sponge-hilal-6', 'home', 'Hilal', 'هلال', 'Kitchen Scourer Sponges', 'إسفنج جلي للمطبخ', '6 pcs', '6 حبات', 7.14],
+    ['persil-gel-1l', 'home', 'Persil', 'برسيل', 'Power Gel Laundry Detergent', 'منظف غسيل سائل', '1 L', '1 لتر', 20.40],
+    ['garbagebags-55', 'home', 'Hotpack', 'هوت باك', 'Large Garbage Bags, 55 Gallon', 'أكياس قمامة كبيرة، 55 جالون', '15 bags', '15 كيس', 16.74],
+    ['binliner-5', 'home', 'Hotpack', 'هوت باك', 'Small Bin Liners, 5 Gallon', 'أكياس سلة صغيرة، 5 جالون', '50 bags', '50 كيس', 9.54],
+    ['foil-falcon', 'home', 'Falcon', 'فالكون', 'Aluminium Foil, 45 cm', 'ورق ألمنيوم، 45 سم', '37.5 ft', '37.5 قدم', 7.20],
+    ['clingfilm-falcon', 'home', 'Falcon', 'فالكون', 'Cling Film, 30 cm', 'نايلون تغليف، 30 سم', '100 sq ft', '100 قدم مربع', 7.80],
+    ['plates-falcon', 'home', 'Falcon', 'فالكون', 'Plastic Plates, 22 cm', 'صحون بلاستيك، 22 سم', '25 pcs', '25 حبة', 10.80],
+    ['pifpaf-powder', 'home', 'Pif Paf', 'بيف باف', 'Cockroach & Ant Killer Powder', 'بودرة قاتلة للصراصير والنمل', '100 g', '100 غ', 6.60],
+    ['batteries-aa', 'home', 'Energizer', 'إنرجايزر', 'AA Alkaline Batteries', 'بطاريات AA قلوية', '2 pcs', 'حبتان', 13.25],
+    ['glade-lavender', 'home', 'Glade', 'جليد', 'Lavender Air Freshener Spray', 'معطر جو باللافندر', '300 ml', '300 مل', 15.54],
+    ['toothpaste-colgate', 'care', 'Colgate', 'كولجيت', 'Max Fresh Toothpaste', 'معجون أسنان ماكس فريش', '100 ml', '100 مل', 7.80],
+    ['toothbrush-colgate', 'care', 'Colgate', 'كولجيت', 'Extra Clean Toothbrush, Medium', 'فرشاة أسنان إكسترا كلين، متوسطة', '1 pc', 'حبة', 5.99],
+    ['shampoo-dove', 'care', 'Dove', 'دوف', 'Hair Fall Rescue Shampoo', 'شامبو لتساقط الشعر', '400 ml', '400 مل', 26.40],
+    ['soap-dettol', 'care', 'Dettol', 'ديتول', 'Original Bar Soap', 'صابون أصلي', '165 g', '165 غ', 5.94],
+    ['handwash-dettol', 'care', 'Dettol', 'ديتول', 'Original Hand Wash', 'غسول يدين أصلي', '200 ml', '200 مل', 10.74],
+    ['deo-dove-rollon', 'care', 'Dove', 'دوف', 'Original Roll-On Deodorant', 'مزيل عرق رول أون', '50 ml', '50 مل', 28.74],
+    ['deo-nivea-men', 'care', 'Nivea Men', 'نيفيا مين', 'Black & White Deodorant Spray', 'مزيل عرق بخاخ', '150 ml', '150 مل', 21.82],
+    ['razor-gillette', 'care', 'Gillette', 'جيليت', 'Blue II Plus Disposable Razors', 'شفرات حلاقة بلو 2 بلس', '5 pcs', '5 حبات', 14.34],
+    ['shavingfoam-gillette', 'care', 'Gillette', 'جيليت', 'Regular Shaving Foam', 'رغوة حلاقة', '200 ml', '200 مل', 12.50],
+    ['pads-always-10', 'care', 'Always', 'أولويز', 'Maxi Thick Pads with Wings', 'فوط صحية سميكة بأجنحة', '10 pads', '10 فوط', 8.40],
+    ['cottonbuds-johnsons', 'care', 'Johnson’s', 'جونسون', 'Cotton Buds', 'أعواد قطنية', '100 pcs', '100 عود', 16.50],
+    ['diapers-pampers-5', 'baby', 'Pampers', 'بامبرز', 'Diapers Size 5 (11–16 kg)', 'حفاضات مقاس 5 (11–16 كغ)', '14 pcs', '14 حفاضة', 26.00],
+    ['wipes-pampers-64', 'baby', 'Pampers', 'بامبرز', 'Baby Wipes', 'مناديل مبللة للأطفال', '64 wipes', '64 منديل', 20.15],
+    ['babysoap-johnsons', 'baby', 'Johnson’s', 'جونسون', 'Baby Soap', 'صابون أطفال', '125 g', '125 غ', 4.74],
+    ['babyshampoo-johnsons', 'baby', 'Johnson’s', 'جونسون', 'Baby Shampoo', 'شامبو أطفال', '200 ml', '200 مل', 21.54],
+    ['cerelac-rice', 'baby', 'Cerelac', 'سيريلاك', 'Milk & Rice Infant Cereal (6+ months)', 'سيريلاك بالحليب والأرز (من 6 أشهر)', '400 g', '400 غ', 39.00]
   ].map(([id, c, b, bAr, n, nAr, s, sAr, p]) => ({ id, c, b, bAr, n, nAr, s, sAr, p }));
   const BY_ID = Object.fromEntries(CATALOG.map(i => [i.id, i]));
   const BASICS = ['milk-alain-1l', 'eggs-mazraa-30', 'bread-jadeed-arabic', 'laban-alain-1l', 'water-alain-15', 'bread-yaumi-white', 'tomato', 'onion'];
-  const SUGGEST = ['bread-jadeed-arabic', 'eggs-mazraa-30', 'milk-alain-1l', 'laban-alain-1l', 'water-alain-15', 'tomato', 'onion', 'cucumber', 'lays-salt', 'kinder-bueno', 'tissue-masafi-130', 'pepsi-can', 'oj-alain-1l'];
+  const SUGGEST = ['bread-jadeed-arabic', 'eggs-mazraa-30', 'milk-alain-1l', 'laban-alain-1l', 'water-alain-15', 'tomato', 'onion', 'banana', 'cucumber', 'yoghurt-almarai-1kg', 'lays-salt', 'pepsi-can', 'kinder-bueno', 'tissue-masafi-130', 'garbagebags-55', 'oj-alain-1l'];
   const SUB_MSG = { similar: 'replace with similar', ask: 'message me first', skip: 'skip it' };
   const OTHER = '__other';
 
@@ -776,7 +927,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       signedUpOn: d => `Signed up ${d}.`,
       ePrices: 'Products and prices', optional: '(optional)',
       ePricesHint: 'Untick what the shop doesn’t sell. Change a price only where it’s different.',
-      sells: n => `Sells ${n}`, priceOf: n => `Price of ${n}`,
+      pSearchLabel: 'Search products', pSearchPh: 'Search products',
+      pAll: c => `Sell everything in ${c}`, pCount: (n, all) => `${n}/${all}`,
+      pSum: (n, all, own) => `Selling ${n} of ${all} products` + (own ? ` · ${own} own price${own === 1 ? '' : 's'}` : ''),
+      pNone: q => `No product matches “${q}”.`,
+      priceOf: n => `Price of ${n}`,
       saveShop: 'Save shop', remove: 'Remove shop', removeConfirm: 'Tap again to remove it for good', saving: 'Saving…',
       errName: 'Add the shop’s name.', errNum: 'Check the WhatsApp number. Try a UAE mobile like 050 123 4567.',
       errSlug: 'Use letters, numbers and dashes for the link name.', errSlugTaken: 'Another shop already uses that link name.',
@@ -867,7 +1022,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       signedUpOn: d => `سُجّل في ${d}.`,
       ePrices: 'المنتجات والأسعار', optional: '(اختياري)',
       ePricesHint: 'أزل العلامة عمّا لا يبيعه المحل، وغيّر السعر فقط إذا كان مختلفًا.',
-      sells: n => `يبيع ${n}`, priceOf: n => `سعر ${n}`,
+      pSearchLabel: 'ابحث في المنتجات', pSearchPh: 'ابحث في المنتجات',
+      pAll: c => `بيع كل ${c}`, pCount: (n, all) => `${n}/${all}`,
+      pSum: (n, all, own) => `يبيع ${n} من ${all} منتجًا` + (own ? ` · ${own} بسعر خاص` : ''),
+      pNone: q => `لا يوجد منتج يطابق «${q}».`,
+      priceOf: n => `سعر ${n}`,
       saveShop: 'احفظ المحل', remove: 'احذف المحل', removeConfirm: 'اضغط مرة أخرى للحذف نهائيًا', saving: 'جارٍ الحفظ…',
       errName: 'أضف اسم المحل.', errNum: 'تحقق من رقم واتساب. جرّب رقمًا إماراتيًا مثل 050 123 4567.',
       errSlug: 'استخدم حروفًا إنجليزية وأرقامًا وشرطات لاسم الرابط.', errSlugTaken: 'هناك محل آخر يستخدم اسم الرابط هذا.',
@@ -976,7 +1135,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     'minNote', 'moreBlock', 'more', 'extra', 'dName', 'dBuilding', 'dFlat', 'dOther', 'dOtherLabel', 'dNote', 'slipTitle', 'slip',
     'doneView', 'doneBody', 'doneNo', 'doneSum', 'sendAgain', 'copyBtn', 'copyBox', 'copyHint', 'newOrder', 'sheetFoot', 'send',
     'footMsg', 'editor', 'edClose', 'edTitle', 'edBody', 'edForm', 'eName', 'eNameAr', 'eNum', 'eSlug', 'eLinkPrev', 'eAreas',
-    'eMin', 'eHours', 'ePrices', 'ePriceList', 'edRemove', 'edSave', 'edMsg'
+    'eMin', 'eHours', 'ePrices', 'ePriceList', 'ePriceSum', 'ePriceQ', 'ePriceNone', 'edRemove', 'edSave', 'edMsg'
   ].forEach(id => { els[id] = $(id); });
   const secBasics = $('sec-basics');
   const fBuilding = $('f-building');
@@ -1730,17 +1889,87 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
   function updateLinkPrev() {
     els.eLinkPrev.textContent = `${baseUrl()}#${slugify(els.eSlug.value) || '...'}`;
   }
+  /* Products and prices: each category folds away, one tick sells or hides a whole category, search finds one product */
+  const priceOpen = new Set();
+  const pName = i => (isFresh(i) ? (iBrand(i) ? `${iName(i)}, ${iBrand(i)}` : iName(i)) : `${iBrand(i)} ${iName(i)}`);
+  const CHEV = '<svg class="chev" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
   function renderPriceList(s) {
     const off = new Set(s ? s.off : []);
     const prices = s ? s.prices : {};
+    priceOpen.clear();
+    els.ePriceQ.value = '';
+    els.ePriceNone.hidden = true;
     els.ePriceList.innerHTML = CATS.map(c => {
       const rows = CATALOG.filter(i => i.c === c.id).map(i => {
         const on = !off.has(i.id);
         const p = prices[i.id] != null ? prices[i.id] : i.p;
-        return `<div class="prow${on ? '' : ' off'}" data-pid="${i.id}"><input type="checkbox" id="pon-${i.id}" data-pon${on ? ' checked' : ''}><label class="pn" for="pon-${i.id}">${esc(msgName(i))}<small>${esc(i.s)}</small></label><input class="pp" type="number" inputmode="decimal" min="0" step="any" value="${fmt(p)}" data-pprice aria-label="${esc(t('priceOf', msgName(i)))}"></div>`;
+        return `<div class="prow${on ? '' : ' off'}" data-pid="${i.id}"><input type="checkbox" id="pon-${i.id}" data-pon${on ? ' checked' : ''}><label class="pn" for="pon-${i.id}"><span data-pname></span><small data-psize></small></label><input class="pp" type="number" inputmode="decimal" min="0" step="any" value="${fmt(p)}" data-pprice></div>`;
       }).join('');
-      return `<div class="pcat"><h4>${esc(c[state.lang])}</h4>${rows}</div>`;
+      return `<div class="pcat" data-pcat="${c.id}"><div class="pcat-head"><label class="pall"><input type="checkbox" data-pall><span class="sr" data-pallname></span></label>` +
+        `<button class="pcat-btn" type="button" data-ptog aria-expanded="false" aria-controls="prows-${c.id}"><span class="pcat-name" data-pcatname></span><span class="pcat-n" data-pcount></span>${CHEV}</button></div>` +
+        `<div class="prows" id="prows-${c.id}" hidden>${rows}</div></div>`;
     }).join('');
+    labelPriceList();
+    updatePriceCounts();
+  }
+  function labelPriceList() {
+    els.ePriceList.querySelectorAll('.pcat').forEach(cat => {
+      const c = CATS.find(x => x.id === cat.dataset.pcat);
+      cat.querySelector('[data-pcatname]').textContent = c[state.lang];
+      cat.querySelector('[data-pallname]').textContent = t('pAll', c[state.lang]);
+    });
+    els.ePriceList.querySelectorAll('.prow').forEach(row => {
+      const i = BY_ID[row.dataset.pid];
+      row.querySelector('[data-pname]').textContent = pName(i);
+      row.querySelector('[data-psize]').textContent = iSize(i);
+      row.querySelector('[data-pprice]').setAttribute('aria-label', t('priceOf', pName(i)));
+    });
+    if (!els.ePriceNone.hidden) els.ePriceNone.textContent = t('pNone', els.ePriceQ.value.trim());
+  }
+  const ownPrice = (i, raw) => {
+    const v = Number(raw);
+    return isFinite(v) && v > 0 && v < 10000 && Math.abs(v - i.p) >= 0.005 ? Math.round(v * 100) / 100 : null;
+  };
+  const shownRows = cat => [...cat.querySelectorAll('.prow')].filter(r => !r.hidden);
+  function updatePriceCounts() {
+    let on = 0, own = 0;
+    const rows = els.ePriceList.querySelectorAll('.prow');
+    rows.forEach(r => {
+      if (r.querySelector('[data-pon]').checked) on++;
+      if (ownPrice(BY_ID[r.dataset.pid], r.querySelector('[data-pprice]').value) != null) own++;
+    });
+    els.ePriceList.querySelectorAll('.pcat').forEach(cat => {
+      const list = shownRows(cat);
+      const n = list.filter(r => r.querySelector('[data-pon]').checked).length;
+      const box = cat.querySelector('[data-pall]');
+      box.checked = list.length > 0 && n === list.length;
+      box.indeterminate = n > 0 && n < list.length;
+      cat.querySelector('[data-pcount]').textContent = t('pCount', n, list.length);
+    });
+    els.ePriceSum.textContent = t('pSum', on, rows.length, own);
+  }
+  function setPriceOpen(cat, open) {
+    cat.querySelector('.prows').hidden = !open;
+    cat.querySelector('[data-ptog]').setAttribute('aria-expanded', String(open));
+    cat.classList.toggle('open', open);
+  }
+  function filterPriceList() {
+    const q = normText(els.ePriceQ.value);
+    let shown = 0;
+    els.ePriceList.querySelectorAll('.pcat').forEach(cat => {
+      let n = 0;
+      cat.querySelectorAll('.prow').forEach(r => {
+        const hit = !q || matches(BY_ID[r.dataset.pid], q);
+        r.hidden = !hit;
+        if (hit) n++;
+      });
+      shown += n;
+      cat.hidden = !!q && n === 0;
+      setPriceOpen(cat, q ? n > 0 : priceOpen.has(cat.dataset.pcat));
+    });
+    els.ePriceNone.hidden = !(q && shown === 0);
+    if (!els.ePriceNone.hidden) els.ePriceNone.textContent = t('pNone', els.ePriceQ.value.trim());
+    updatePriceCounts();
   }
   function setEdMsg(text, bad) {
     els.edMsg.textContent = text || '';
@@ -1831,8 +2060,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const i = BY_ID[row.dataset.pid];
       if (!i) return;
       if (!row.querySelector('[data-pon]').checked) off.push(i.id);
-      const v = Number(row.querySelector('[data-pprice]').value);
-      if (isFinite(v) && v > 0 && v < 10000 && Math.abs(v - i.p) >= 0.005) prices[i.id] = Math.round(v * 100) / 100;
+      const v = ownPrice(i, row.querySelector('[data-pprice]').value);
+      if (v != null) prices[i.id] = v;
     });
     const wa = normalizeNumber(els.eNum.value);
     return {
@@ -2091,6 +2320,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
         els.edTitle.textContent = state.editing ? t('edEdit') : t('edAdd');
         els.edRemove.textContent = els.edRemove.dataset.confirm === '1' ? t('removeConfirm') : t('remove');
         renderSignedUp();
+        labelPriceList();
+        updatePriceCounts();
       }
     }
     if (!state.view) return;
@@ -2259,9 +2490,28 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (s && wasNew) flash(t('savedFlash', s.en));
   });
   els.ePriceList.addEventListener('change', e => {
+    const all = e.target.closest('[data-pall]');
+    if (all) {
+      shownRows(all.closest('.pcat')).forEach(r => {
+        r.querySelector('[data-pon]').checked = all.checked;
+        r.classList.toggle('off', !all.checked);
+      });
+    }
     const cb = e.target.closest('[data-pon]');
     if (cb) cb.closest('.prow').classList.toggle('off', !cb.checked);
+    updatePriceCounts();
   });
+  els.ePriceList.addEventListener('input', e => { if (e.target.closest('[data-pprice]')) updatePriceCounts(); });
+  els.ePriceList.addEventListener('click', e => {
+    const btn = e.target.closest('[data-ptog]');
+    if (!btn) return;
+    const cat = btn.closest('.pcat');
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    if (!normText(els.ePriceQ.value)) { if (open) priceOpen.add(cat.dataset.pcat); else priceOpen.delete(cat.dataset.pcat); }
+    setPriceOpen(cat, open);
+  });
+  els.ePriceQ.addEventListener('input', filterPriceList);
+  els.ePriceQ.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); els.ePriceQ.blur(); } });
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     if (!els.editor.hidden) closeEditor(false);

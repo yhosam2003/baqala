@@ -35,7 +35,7 @@ On each phone you use, open the shop manager and connect GitHub:
 
 The shop list shows every shop with its owner, phone, status and fees. You can search it, call or WhatsApp an owner, and download it as a CSV for Excel or Google Sheets. Setting a shop to **Stopped** hides its menu from customers until you change it back.
 
-Under **Products and prices** you can untick what a shop doesn't sell and change any price for that shop only.
+Under **Products and prices** are all 200 products, in 14 categories. You can untick what a shop doesn't sell (one tick covers a whole category), search for a product, and change any price for that shop only.
 
 ## Files
 
